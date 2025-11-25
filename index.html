@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solo Toolbox: 9-in-1 Premium Web Tools</title>
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GOOGLE ADSENSE SCRIPT: REMINDER - REPLACE PLACEHOLDERS -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX"
+        crossorigin="anonymous"></script>
+    <!-- END ADSENSE SCRIPT -->
+    
+    <style>
+        /* Custom styles for the premium dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Deep Slate Background */
+            color: #f3f4f6; /* Light text for high contrast */
+        }
+        /* Main tool container card style */
+        .tool-card {
+            background-color: #1f2937; /* Darker Card background */
+            border: 1px solid #374151; /* Subtle border */
+        }
+        /* Custom scrollbar for dark theme */
+        .custom-scroll::-webkit-scrollbar {
+            height: 6px;
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #4b5563; /* Darker thumb */
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: #1f2937; /* Darker track */
+        }
+
+        /* Tab button styling for dark mode */
+        .tool-tab-button {
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+            color: #d1d5db; /* Light gray text */
+            white-space: nowrap;
+        }
+        .tool-tab-button:hover {
+            color: #a5b4fc; /* Light indigo on hover */
+        }
+        .tool-tab-button.active {
+            border-bottom: 3px solid #6366f1; /* Vibrant indigo accent */
+            font-weight: 600;
+            color: #e5e7eb; /* White text for active tab */
+        }
+        
+        /* Input/Textarea styling for dark mode */
+        textarea, input[type="text"], input[type="number"], input[type="datetime-local"], select {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+            color: #e5e7eb !important;
+        }
+        textarea:focus, input:focus, select:focus {
+             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5) !important; /* Indigo ring */
+             border-color: #6366f1 !important;
+        }
+
+        /* Ad Slot Styling to integrate better */
+        .ad-slot-container {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            border: 1px solid #4f46e5; /* Primary border color */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure the sidebar ad is hidden on small screens */
+        @media (max-width: 1023px) {
+            .ad-sidebar {
+                display: none;
+            }
+        }
+    </style>
+    <!-- Configure Tailwind to use the Inter font (or system fallback) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'accent-primary': '#6366f1', // Indigo 500
+                        'accent-dark': '#4f46e5', // Indigo 600
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-8 lg:px-12 py-10">
+        <!-- Header -->
+        <header class="mb-10">
+            <h1 class="text-5xl font-extrabold text-white mb-2 tracking-tighter">The <span class="text-accent-primary">Solo</span> Toolbox</h1>
+            <p class="text-xl text-gray-400">9 Essential, Zero-Backend Tools for Developers, Creators, and SEO Experts.</p>
+            <div class="mt-4 p-3 bg-yellow-900 bg-opacity-30 rounded-xl border border-yellow-700 shadow-inner">
+                <p class="text-sm text-yellow-300">
+                    <span class="font-bold">✨ Premium Tool Tip:</span> All processing is done securely in your browser. Nothing is uploaded to a server.
+                </p>
+            </div>
+        </header>
+
+        <!-- AD SLOT 1: HEADER BANNER (Automatic/Responsive Ad) -->
+        <div class="w-full text-center mb-10 p-4 ad-slot-container rounded-2xl shadow-xl">
+            <p class="text-xs text-gray-500 mb-2 font-mono tracking-widest uppercase">Advertisement: High Value Placement</p>
+            <!-- Ad unit container must be visible for ad to load -->
+            <ins class="adsbygoogle"
+                style="display:block; min-height: 100px;"
+                data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+                data-ad-slot="1111111111"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <!-- End AD SLOT 1 -->
+
+        <!-- Tool Tabs Navigation (Sticky) -->
+        <nav class="border-b border-gray-700 sticky top-0 bg-[#111827] z-20 shadow-xl">
+            <div class="-mb-px flex space-x-6 sm:space-x-10 overflow-x-auto custom-scroll">
+                <button onclick="showTool('markdown')" class="tool-tab-button py-4 px-1 sm:px-0 active">Markdown to HTML</button>
+                <button onclick="showTool('image')" class="tool-tab-button py-4 px-1 sm:px-0">Image Optimizer</button>
+                <button onclick="showTool('json')" class="tool-tab-button py-4 px-1 sm:px-0">JSON Formatter</button>
+                <button onclick="showTool('timestamp')" class="tool-tab-button py-4 px-1 sm:px-0">Timestamp</button>
+                <button onclick="showTool('color')" class="tool-tab-button py-4 px-1 sm:px-0">Color Converter</button>
+                <button onclick="showTool('timer')" class="tool-tab-button py-4 px-1 sm:px-0">Timer / Stopwatch</button>
+                <button onclick="showTool('case')" class="tool-tab-button py-4 px-1 sm:px-0">Text Case</button>
+                <button onclick="showTool('unit')" class="tool-tab-button py-4 px-1 sm:px-0">PX to REM/EM</button>
+                <button onclick="showTool('password')" class="tool-tab-button py-4 px-1 sm:px-0">Password Gen</button>
+            </div>
+        </nav>
+
+        <!-- Responsive Grid for Main Content + Sidebar Ad -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10">
+            
+            <!-- Main Content (Tools) - Takes 2/3 of space on large screens -->
+            <div class="lg:col-span-2 space-y-16">
+                 <!-- Tools Container -->
+                <div id="tools-container" class="space-y-12">
+
+                    <!-- 1. Markdown to HTML Converter -->
+                    <div id="tool-markdown" class="tool-content tool-card p-8 rounded-3xl shadow-2xl">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Markdown to HTML Converter</h2>
+                        <p class="text-gray-400 mb-6">Convert your content into clean, semantic HTML markup instantly.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Markdown Input</label>
+                                <textarea id="markdown-input" oninput="convertMarkdown()" class="w-full h-72 p-4 border rounded-xl shadow-inner font-mono text-sm" placeholder="Write your # Markdown here..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Rendered Preview</label>
+                                <div id="html-rendered" class="w-full h-72 p-4 rounded-xl bg-[#0f172a] overflow-y-auto shadow-inner prose prose-invert max-w-none text-gray-300"></div>
+                                
+                                <label class="block text-sm font-medium text-gray-300 mt-6 mb-2">HTML Markup</label>
+                                <textarea id="html-markup" readonly class="w-full h-32 p-4 rounded-xl bg-gray-800 text-xs font-mono custom-scroll"></textarea>
+                                <button onclick="copyToClipboard('html-markup', this)" class="mt-4 px-6 py-3 bg-accent-primary text-white font-semibold rounded-xl shadow-lg hover:bg-accent-dark transition duration-200 transform hover:scale-[1.02]">Copy HTML Code</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Image Compressor & Optimizer -->
+                    <div id="tool-image" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">In-Browser Image Optimizer (WebP)</h2>
+                        <p class="text-gray-400 mb-6">Compress file size and convert to modern formats securely on your device.</p>
+                        <div class="max-w-2xl mx-auto p-6 tool-card rounded-2xl shadow-xl text-center">
+                            <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" class="hidden" onchange="handleImageLoad(event)">
+                            <button onclick="document.getElementById('image-input').click()" class="w-full px-6 py-6 border-4 border-dashed border-indigo-500 text-indigo-300 hover:border-indigo-400 hover:bg-indigo-900 transition rounded-2xl text-xl font-bold">
+                                🖼️ Click to Select or Drop Image File
+                            </button>
+
+                            <div id="image-controls" class="hidden space-y-6 pt-6">
+                                <div class="flex justify-between items-center text-gray-400 text-sm border-b border-gray-700 pb-3 mb-3">
+                                    <span>Original Size: <span id="image-original-size" class="font-bold text-white">0 KB</span></span>
+                                    <span>File: <span id="image-filename" class="font-medium text-white"></span></span>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-4">
+                                        <label for="output-format" class="text-md font-medium text-gray-300 flex-shrink-0">Output Format:</label>
+                                        <select id="output-format" class="p-3 border rounded-xl w-full">
+                                            <option value="image/webp">WebP (Best Compression)</option>
+                                            <option value="image/jpeg">JPEG (Lossy)</option>
+                                            <option value="image/png">PNG (Lossless)</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 items-center">
+                                        <label for="quality-slider" class="text-md font-medium text-gray-300 flex-shrink-0">Quality:</label>
+                                        <input type="range" id="quality-slider" min="10" max="100" value="85" oninput="updateQualityDisplay(this.value)" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-lg">
+                                        <span id="quality-value" class="text-md font-mono text-accent-primary w-12 flex-shrink-0">85%</span>
+                                    </div>
+                                </div>
+                                
+                                <button onclick="convertAndDownloadImage()" class="w-full px-6 py-4 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition shadow-lg transform hover:scale-[1.01] text-lg">
+                                    ⬇️ Download Optimized Image
+                                </button>
+                                <div id="image-savings" class="text-lg font-bold text-green-400 mt-4"></div>
+                            </div>
+                            <div id="image-status" class="mt-4 text-sm text-red-400"></div>
+                        </div>
+                        <canvas id="image-canvas" class="hidden"></canvas>
+                    </div>
+
+                    <!-- 3. JSON Formatter & Validator -->
+                    <div id="tool-json" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">JSON Formatter & Validator</h2>
+                        <p class="text-gray-400 mb-6">Validate syntax and beautify raw JSON for easy debugging and reading.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">JSON Input (Raw / Minified)</label>
+                                <textarea id="json-input" oninput="formatJson()" class="w-full h-72 p-4 rounded-xl shadow-inner font-mono text-sm" placeholder='{"user":"Jane","id":42,"active":true}'></textarea>
+                                <div id="json-status" class="mt-3 text-sm font-medium"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Formatted JSON Output</label>
+                                <textarea id="json-output" readonly class="w-full h-72 p-4 rounded-xl bg-gray-800 shadow-inner font-mono text-sm custom-scroll"></textarea>
+                                <button onclick="copyToClipboard('json-output', this)" class="mt-4 px-6 py-3 bg-accent-primary text-white font-semibold rounded-xl shadow-lg hover:bg-accent-dark transition duration-200 transform hover:scale-[1.02]">Copy Formatted</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Unix Timestamp Converter -->
+                    <div id="tool-timestamp" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Unix Timestamp Converter</h2>
+                        <p class="text-gray-400 mb-6">Convert between human-readable dates and Unix epoch timestamps.</p>
+                        <div class="max-w-2xl mx-auto p-6 tool-card rounded-2xl shadow-xl space-y-6 border-none">
+
+                            <!-- Date to Timestamp -->
+                            <div class="border-b border-gray-700 pb-6">
+                                <h3 class="text-xl font-semibold text-white mb-4">Date & Time to Timestamp</h3>
+                                <input type="datetime-local" id="date-input" class="w-full p-3 rounded-xl shadow-md mb-4">
+                                <button onclick="dateToTimestamp()" class="w-full px-4 py-3 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition shadow-lg">Generate Timestamp</button>
+                                <div class="mt-4 bg-gray-800 p-4 rounded-xl flex justify-between items-center">
+                                    <span class="text-md text-gray-400">Result:</span>
+                                    <span id="timestamp-output" class="font-mono text-2xl text-green-400">---</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Timestamp to Date -->
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-4">Timestamp to Date & Time</h3>
+                                <div class="flex space-x-3 mb-4">
+                                    <input type="number" id="timestamp-input" placeholder="e.g., 1672531200" oninput="timestampToDate(false)" class="w-full p-3 rounded-xl shadow-md font-mono">
+                                    <button onclick="timestampToDate(true)" class="px-5 py-3 bg-teal-600 text-white font-bold rounded-xl hover:bg-teal-700 transition shadow-md whitespace-nowrap">Current Time</button>
+                                </div>
+                                <div class="mt-3 bg-gray-800 p-4 rounded-xl space-y-2">
+                                    <div class="flex justify-between items-center"><span class="text-md text-gray-400">Local Time:</span><span id="date-output-local" class="font-mono text-md text-white">---</span></div>
+                                    <div class="flex justify-between items-center"><span class="text-md text-gray-400">UTC Time:</span><span id="date-output-utc" class="font-mono text-md text-white">---</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Hex/RGB/HSL Color Code Converter -->
+                    <div id="tool-color" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Color Code Converter</h2>
+                        <p class="text-gray-400 mb-6">Instantly translate color formats (Hex, RGB, HSL) for design consistency.</p>
+                        <div class="max-w-md mx-auto p-6 tool-card rounded-2xl shadow-xl space-y-4 border-none">
+                            <div id="color-swatch" class="h-32 rounded-xl mb-4 border-4 border-gray-700 transition-colors duration-500" style="background-color: #6366f1;"></div>
+                            <label class="block text-sm font-medium text-gray-300">Enter Color Code</label>
+                            <input type="text" id="color-input" oninput="convertColor()" value="#6366f1" class="w-full p-4 rounded-xl shadow-md text-lg text-center font-mono">
+                            <p id="color-error" class="text-sm text-red-400 pt-1"></p>
+                            <div class="space-y-3 pt-6">
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl">
+                                    <span class="font-mono text-sm text-gray-400">Hex: <span id="output-hex" class="font-bold text-white">#6366F1</span></span>
+                                    <button onclick="copyToClipboard('output-hex', this, true)" class="text-xs text-accent-primary hover:text-white transition">Copy</button>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl">
+                                    <span class="font-mono text-sm text-gray-400">RGB: <span id="output-rgb" class="font-bold text-white">rgb(99, 102, 241)</span></span>
+                                    <button onclick="copyToClipboard('output-rgb', this, true)" class="text-xs text-accent-primary hover:text-white transition">Copy</button>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl">
+                                    <span class="font-mono text-sm text-gray-400">HSL: <span id="output-hsl" class="font-bold text-white">hsl(239, 81%, 67%)</span></span>
+                                    <button onclick="copyToClipboard('output-hsl', this, true)" class="text-xs text-accent-primary hover:text-white transition">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Online StopWatch & Countdown Timer -->
+                    <div id="tool-timer" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Stopwatch & Countdown Timer</h2>
+                        <p class="text-gray-400 mb-6">Perfect for focused work sprints, meetings, or Pomodoro sessions.</p>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Stopwatch -->
+                            <div class="p-6 tool-card rounded-2xl shadow-xl text-center border-none">
+                                <h3 class="text-2xl font-semibold text-white mb-4 border-b border-gray-700 pb-3">Stopwatch ⏱️</h3>
+                                <div id="stopwatch-display" class="text-7xl font-mono text-green-400 mb-6 tracking-wider">00:00:00</div>
+                                <div class="flex justify-center space-x-3">
+                                    <button id="sw-start-btn" onclick="startStopwatch()" class="px-5 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-md">Start</button>
+                                    <button id="sw-stop-btn" onclick="stopStopwatch()" class="px-5 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition shadow-md" disabled>Stop</button>
+                                    <button onclick="resetStopwatch()" class="px-5 py-3 bg-gray-600 text-white font-bold rounded-xl hover:bg-gray-700 transition shadow-md">Reset</button>
+                                    <button onclick="lapStopwatch()" class="px-5 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-md">Lap</button>
+                                </div>
+                                <div class="mt-6 max-h-40 overflow-y-auto custom-scroll border border-gray-700 p-3 rounded-xl bg-gray-800">
+                                    <ul id="sw-laps" class="text-left text-sm font-mono text-gray-300 space-y-1"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Countdown Timer -->
+                            <div class="p-6 tool-card rounded-2xl shadow-xl text-center border-none">
+                                <h3 class="text-2xl font-semibold text-white mb-4 border-b border-gray-700 pb-3">Countdown Timer ⏰</h3>
+                                <div id="timer-display" class="text-7xl font-mono text-accent-primary mb-6 tracking-wider">00:00:00</div>
+                                <div class="flex justify-center space-x-3 mb-4">
+                                    <input type="number" id="timer-minutes" value="25" min="1" max="59" class="w-16 p-3 rounded-xl text-center font-mono">
+                                    <span class="text-xl self-center text-gray-300">Min</span>
+                                    <input type="number" id="timer-seconds" value="00" min="0" max="59" class="w-16 p-3 rounded-xl text-center font-mono">
+                                    <span class="text-xl self-center text-gray-300">Sec</span>
+                                </div>
+                                <div class="flex justify-center space-x-3">
+                                    <button id="timer-start-btn" onclick="startTimer()" class="px-5 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-md">Start</button>
+                                    <button id="timer-pause-btn" onclick="pauseTimer()" class="px-5 py-3 bg-yellow-600 text-white font-bold rounded-xl hover:bg-yellow-700 transition shadow-md" disabled>Pause</button>
+                                    <button onclick="resetTimer()" class="px-5 py-3 bg-gray-600 text-white font-bold rounded-xl hover:bg-gray-700 transition shadow-md">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Case Converter / Text Transformer -->
+                    <div id="tool-case" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Text Case Transformer</h2>
+                        <p class="text-gray-400 mb-6">Convert text into various casing styles (camel, kebab, snake, etc.).</p>
+                        <textarea id="case-input" oninput="convertCase()" class="w-full h-40 p-4 rounded-xl shadow-inner mb-4" placeholder="Paste your text here..."></textarea>
+                        <div id="case-stats" class="text-sm text-gray-400 mb-8"></div>
+
+                        <div id="case-results" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Results will be injected here -->
+                        </div>
+                    </div>
+                    
+                    <!-- 8. Pixel-to-EM/REM/PT Converter -->
+                    <div id="tool-unit" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">PX to REM/EM Converter</h2>
+                        <p class="text-gray-400 mb-6">Translate fixed pixel sizes into responsive units for modern CSS development.</p>
+                        <div class="max-w-xl mx-auto p-6 tool-card rounded-2xl shadow-xl space-y-6 border-none">
+                            <div class="flex items-center space-x-4">
+                                <label for="px-input" class="text-lg font-medium text-gray-300 flex-shrink-0 w-28">PX Value:</label>
+                                <input type="number" id="px-input" value="16" oninput="convertUnits()" class="w-full p-4 rounded-xl shadow-md text-lg font-mono text-center">
+                            </div>
+                            <div class="flex items-center space-x-4 border-b border-gray-700 pb-6">
+                                <label for="base-font" class="text-lg font-medium text-gray-300 flex-shrink-0 w-28">Base Font:</label>
+                                <input type="number" id="base-font" value="16" oninput="convertUnits()" class="w-full p-4 rounded-xl shadow-md text-lg font-mono text-center">
+                            </div>
+                            <div class="pt-4 space-y-4">
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl border border-gray-700">
+                                    <span class="font-semibold text-gray-300">REM (Root EM):</span>
+                                    <span id="output-rem" class="font-mono text-xl text-green-400">1.0000 rem</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl border border-gray-700">
+                                    <span class="font-semibold text-gray-300">EM (Relative EM):</span>
+                                    <span id="output-em" class="font-mono text-xl text-green-400">1.0000 em</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl border border-gray-700">
+                                    <span class="font-semibold text-gray-300">Point (PT):</span>
+                                    <span id="output-pt" class="font-mono text-xl text-green-400">12.0000 pt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Random Password/String Generator -->
+                    <div id="tool-password" class="tool-content tool-card p-8 rounded-3xl shadow-2xl hidden">
+                        <h2 class="text-3xl font-bold text-accent-primary mb-4">Secure Password Generator</h2>
+                        <p class="text-gray-400 mb-6">Generate cryptographically random, strong passwords and tokens.</p>
+
+                        <div class="max-w-2xl mx-auto p-6 tool-card rounded-2xl shadow-xl border-none">
+                            <div class="flex items-center mb-8">
+                                <input type="text" id="password-output" readonly value="Click Generate!" class="w-full p-4 rounded-l-xl bg-gray-800 font-mono text-xl text-white select-all">
+                                <button onclick="generatePassword()" class="px-6 py-4 bg-accent-primary text-white font-bold rounded-r-xl hover:bg-accent-dark transition shadow-lg whitespace-nowrap transform hover:scale-[1.01] active:scale-[0.98]">GENERATE</button>
+                            </div>
+                            
+                            <div id="password-strength" class="text-center font-bold text-sm mb-6"></div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Controls Column -->
+                                <label class="flex items-center space-x-3 cursor-pointer bg-gray-800 p-3 rounded-xl hover:bg-gray-700 transition">
+                                    <input type="checkbox" id="check-uppercase" checked class="form-checkbox h-5 w-5 text-accent-primary rounded focus:ring-accent-primary">
+                                    <span class="text-gray-300">Include Uppercase (A-Z)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer bg-gray-800 p-3 rounded-xl hover:bg-gray-700 transition">
+                                    <input type="checkbox" id="check-lowercase" checked class="form-checkbox h-5 w-5 text-accent-primary rounded focus:ring-accent-primary">
+                                    <span class="text-gray-300">Include Lowercase (a-z)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer bg-gray-800 p-3 rounded-xl hover:bg-gray-700 transition">
+                                    <input type="checkbox" id="check-numbers" checked class="form-checkbox h-5 w-5 text-accent-primary rounded focus:ring-accent-primary">
+                                    <span class="text-gray-300">Include Numbers (0-9)</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer bg-gray-800 p-3 rounded-xl hover:bg-gray-700 transition">
+                                    <input type="checkbox" id="check-symbols" class="form-checkbox h-5 w-5 text-accent-primary rounded focus:ring-accent-primary">
+                                    <span class="text-gray-300">Include Symbols (!@#$)</span>
+                                </label>
+                                <div class="col-span-2 mt-4">
+                                    <label for="password-length" class="block text-sm font-medium text-gray-300 mb-2">Password Length: <span id="length-value" class="font-mono text-accent-primary font-bold">16</span></label>
+                                    <input type="range" id="password-length" min="8" max="64" value="16" oninput="document.getElementById('length-value').textContent = this.value; generatePassword()" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer range-lg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Sidebar Ad Column - Takes 1/3 of space on large screens -->
+            <aside class="lg:col-span-1 ad-sidebar">
+                <!-- AD SLOT 2: VERTICAL SKYSCRAPER (High-Earning Desktop Slot) -->
+                 <div class="sticky top-[100px] w-full text-center p-6 ad-slot-container rounded-3xl shadow-2xl">
+                     <p class="text-xs text-gray-500 mb-3 font-mono tracking-widest uppercase">Sponsored Content</p>
+                     <!-- Ad unit container must be visible for ad to load -->
+                     <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:600px"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXX"
+                         data-ad-slot="2222222222"></ins>
+                     <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                     </script>
+                 </div>
+                 <!-- End AD SLOT 2 -->
+            </aside>
+        </div>
+        <!-- End Responsive Grid -->
+
+    </div>
+
+    <!-- Main JavaScript Logic (Unchanged from previous version, just included for completeness) -->
+    <script>
+        // --- Global Utility Functions ---
+
+        /**
+         * Switches the visible tool panel and updates the active tab button.
+         * @param {string} toolId - The ID of the tool to show (e.g., 'markdown').
+         */
+        function showTool(toolId) {
+            document.querySelectorAll('.tool-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tool-${toolId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.tool-tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.tool-tab-button[onclick*="'${toolId}'"]`).classList.add('active');
+
+            // Initialize specific tools when shown
+            if (toolId === 'case') {
+                convertCase();
+            } else if (toolId === 'unit') {
+                convertUnits();
+            } else if (toolId === 'color') {
+                convertColor();
+            } else if (toolId === 'password') {
+                generatePassword();
+            } else if (toolId === 'markdown') {
+                convertMarkdown();
+            } else if (toolId === 'timestamp') {
+                timestampToDate(true); // Show current timestamp by default
+            }
+        }
+
+        /**
+         * Copies text from an element to the clipboard and provides visual feedback.
+         * @param {string} elementId - The ID of the element containing the text to copy.
+         * @param {HTMLElement} button - The button element that triggered the copy.
+         * @param {boolean} isSpan - If true, reads content from innerText, otherwise from value.
+         */
+        function copyToClipboard(elementId, button, isSpan = false) {
+            let textToCopy;
+            const element = document.getElementById(elementId);
+            
+            if (isSpan) {
+                textToCopy = element.innerText;
+            } else if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT') {
+                textToCopy = element.value;
+            } else {
+                textToCopy = element.innerText;
+            }
+
+            // Fallback for document.execCommand('copy') which works better in iframes
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                const originalText = button.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Failed to copy text:', err);
+                    // Fallback to execCommand if clipboard API fails (e.g., older browser or strict iframe)
+                    try {
+                        const tempInput = document.createElement('textarea');
+                        tempInput.value = textToCopy;
+                        document.body.appendChild(tempInput);
+                        tempInput.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempInput);
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 1500);
+                    } catch (e) {
+                         button.textContent = 'Error!';
+                         setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 1500);
+                    }
+                });
+            }
+        }
+
+
+        // --- TOOL 1: Markdown to HTML Converter ---
+        
+        function convertMarkdown() {
+            const input = document.getElementById('markdown-input').value;
+            let htmlOutput = input;
+
+            // 1. Basic Block-level conversions (must be done first)
+            htmlOutput = htmlOutput.split('\n\n').map(paragraph => {
+                if (!paragraph.trim()) return ''; 
+
+                // Headings: #, ##, ### (Check for H1, H2, H3)
+                if (paragraph.startsWith('# ')) return `<h1>${paragraph.substring(2).trim()}</h1>`;
+                if (paragraph.startsWith('## ')) return `<h2>${paragraph.substring(3).trim()}</h2>`;
+                if (paragraph.startsWith('### ')) return `<h3>${paragraph.substring(4).trim()}</h3>`;
+
+                // Lists (simple * or - at start of line for whole block)
+                if (paragraph.trim().startsWith('* ') || paragraph.trim().startsWith('- ')) {
+                    const listItems = paragraph.split('\n').map(line => {
+                        const trimmed = line.trim();
+                        if (trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
+                            return `<li>${trimmed.substring(2).trim()}</li>`;
+                        }
+                        return '';
+                    }).join('');
+                    return `<ul>${listItems}</ul>`;
+                }
+
+                // Default: Paragraph
+                return `<p>${paragraph}</p>`;
+            }).join('\n');
+
+            // 2. Inline conversions (applied to all resulting HTML)
+            htmlOutput = htmlOutput.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold: **text**
+            htmlOutput = htmlOutput.replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic: *text*
+            htmlOutput = htmlOutput.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>'); // Links: [text](url)
+
+            document.getElementById('html-rendered').innerHTML = htmlOutput;
+            document.getElementById('html-markup').value = htmlOutput.trim();
+        }
+
+        // --- TOOL 2: Image Compressor & Optimizer ---
+
+        let loadedImage = null;
+        let originalFileSize = 0;
+        let canvas = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            canvas = document.getElementById('image-canvas');
+        });
+
+        function updateQualityDisplay(value) {
+             document.getElementById('quality-value').textContent = `${value}%`;
+        }
+
+        function handleImageLoad(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            originalFileSize = file.size;
+            document.getElementById('image-filename').textContent = file.name;
+            document.getElementById('image-original-size').textContent = (originalFileSize / 1024 / 1024).toFixed(2) + ' MB';
+            document.getElementById('image-controls').classList.remove('hidden');
+            document.getElementById('image-status').textContent = '';
+            document.getElementById('image-savings').textContent = 'Adjust quality and convert to see savings.';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    loadedImage = img;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function convertAndDownloadImage() {
+            if (!loadedImage) {
+                document.getElementById('image-status').textContent = 'Please load an image first.';
+                return;
+            }
+
+            const format = document.getElementById('output-format').value;
+            const quality = parseFloat(document.getElementById('quality-slider').value) / 100;
+            const filename = document.getElementById('image-filename').textContent.split('.')[0];
+            const extension = format.split('/')[1].replace('jpeg', 'jpg');
+
+            canvas.width = loadedImage.width;
+            canvas.height = loadedImage.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(loadedImage, 0, 0);
+
+            document.getElementById('image-status').textContent = 'Processing...';
+
+            try {
+                canvas.toBlob((blob) => {
+                    document.getElementById('image-status').textContent = '';
+
+                    if (!blob) {
+                        document.getElementById('image-status').textContent = 'Conversion failed or not supported by browser.';
+                        return;
+                    }
+                    
+                    const newSize = blob.size;
+                    const savings = originalFileSize - newSize;
+                    const percentageSaved = ((savings / originalFileSize) * 100).toFixed(1);
+                    const newSizeMB = (newSize / 1024 / 1024).toFixed(2);
+                    
+                    document.getElementById('image-savings').textContent = 
+                        `New Size: ${newSizeMB} MB | Saved: ${percentageSaved}%`;
+
+
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${filename}_optimized.${extension}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    document.getElementById('image-status').textContent = 'Download complete! File saved successfully.';
+
+                }, format, format === 'image/png' ? undefined : quality); // Quality only applies to lossy formats
+            } catch (e) {
+                document.getElementById('image-status').textContent = `Error during conversion: ${e.message}. Try a different format.`;
+            }
+        }
+        
+        // --- TOOL 3: JSON Formatter & Validator ---
+        
+        function formatJson() {
+            const input = document.getElementById('json-input').value;
+            const outputElement = document.getElementById('json-output');
+            const statusElement = document.getElementById('json-status');
+            
+            outputElement.value = '';
+            statusElement.className = 'mt-3 text-sm font-medium';
+            statusElement.textContent = '';
+            
+            if (!input.trim()) {
+                statusElement.textContent = 'Waiting for JSON input...';
+                statusElement.classList.add('text-gray-500');
+                return;
+            }
+
+            try {
+                const parsedJson = JSON.parse(input);
+                // Use 4 spaces for professional indentation
+                const formattedJson = JSON.stringify(parsedJson, null, 4); 
+                outputElement.value = formattedJson;
+                statusElement.textContent = 'JSON is valid and formatted.';
+                statusElement.classList.add('text-green-400');
+            } catch (e) {
+                outputElement.value = '';
+                statusElement.textContent = `JSON Error: ${e.message}`;
+                statusElement.classList.add('text-red-400');
+            }
+        }
+
+        // --- TOOL 4: Unix Timestamp Converter ---
+        
+        function dateToTimestamp() {
+            const dateInput = document.getElementById('date-input').value;
+            const timestampOutput = document.getElementById('timestamp-output');
+
+            if (!dateInput) {
+                timestampOutput.textContent = 'Select date & time';
+                timestampOutput.classList.add('text-red-400');
+                return;
+            }
+            timestampOutput.classList.remove('text-red-400');
+
+            // Date.parse returns milliseconds since epoch
+            const ms = Date.parse(dateInput);
+            if (isNaN(ms)) {
+                timestampOutput.textContent = 'Invalid date format.';
+                timestampOutput.classList.add('text-red-400');
+                return;
+            }
+            // Unix timestamp is in seconds
+            const timestamp = Math.floor(ms / 1000);
+            timestampOutput.textContent = timestamp.toLocaleString('en-US'); 
+        }
+
+        function timestampToDate(setToCurrent = false) {
+            const timestampInput = document.getElementById('timestamp-input');
+            let timestamp;
+
+            if (setToCurrent) {
+                // Get current time in seconds
+                timestamp = Math.floor(Date.now() / 1000);
+                timestampInput.value = timestamp;
+            } else {
+                timestamp = parseInt(timestampInput.value) || 0;
+            }
+
+            const dateLocalOutput = document.getElementById('date-output-local');
+            const dateUtcOutput = document.getElementById('date-output-utc');
+            
+            if (timestamp === 0) {
+                 dateLocalOutput.textContent = '---';
+                 dateUtcOutput.textContent = '---';
+                 return;
+            }
+
+            // Convert seconds to milliseconds
+            const date = new Date(timestamp * 1000);
+
+            dateLocalOutput.textContent = date.toLocaleString();
+            dateUtcOutput.textContent = date.toUTCString();
+        }
+
+        // --- TOOL 5: Color Code Converter ---
+
+        function convertColor() {
+            // (Same Color Conversion logic as before)
+            const input = document.getElementById('color-input').value.trim();
+            const swatch = document.getElementById('color-swatch');
+            const outputHex = document.getElementById('output-hex');
+            const outputRgb = document.getElementById('output-rgb');
+            const outputHsl = document.getElementById('output-hsl');
+            const errorElement = document.getElementById('color-error');
+
+            errorElement.textContent = '';
+            let hex = '';
+            let rgb = '';
+            let hsl = '';
+
+            try {
+                if (input.startsWith('#')) {
+                    hex = input.toUpperCase();
+                    const r = parseInt(hex.substring(1, 3), 16);
+                    const g = parseInt(hex.substring(3, 5), 16);
+                    const b = parseInt(hex.substring(5, 7), 16);
+                    if (isNaN(r) || isNaN(g) || isNaN(b)) throw new Error('Invalid Hex');
+                    rgb = `rgb(${r}, ${g}, ${b})`;
+                    hsl = rgbToHsl(r, g, b);
+                } else if (input.toLowerCase().startsWith('rgb')) {
+                    const values = input.match(/\d+/g).map(Number);
+                    if (values.length !== 3) throw new Error('Invalid RGB');
+                    const [r, g, b] = values;
+                    rgb = `rgb(${r}, ${g}, ${b})`;
+                    hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+                    hsl = rgbToHsl(r, g, b);
+                } else if (input.toLowerCase().startsWith('hsl')) {
+                    const values = input.match(/\d+/g).map(Number);
+                    if (values.length !== 3) throw new Error('Invalid HSL');
+                    const [h, s, l] = values;
+                    hsl = `hsl(${h}, ${s}%, ${l}%)`;
+                    const [r, g, b] = hslToRgb(h, s, l);
+                    rgb = `rgb(${r}, ${g}, ${b})`;
+                    hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+                } else {
+                    throw new Error('Please enter a valid Hex, RGB, or HSL value.');
+                }
+            } catch (e) {
+                errorElement.textContent = e.message;
+                swatch.style.backgroundColor = '#ccc';
+                outputHex.textContent = '---';
+                outputRgb.textContent = '---';
+                outputHsl.textContent = '---';
+                return;
+            }
+
+            swatch.style.backgroundColor = hex;
+            outputHex.textContent = hex;
+            outputRgb.textContent = rgb;
+            outputHsl.textContent = hsl;
+        }
+
+        // Helper function: RGB to HSL
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+        }
+
+        // Helper function: HSL to RGB
+        function hslToRgb(h, s, l) {
+            h /= 360; s /= 100; l /= 100;
+            let r, g, b;
+
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1 / 6) return p + (q - p) * 6 * t;
+                    if (t < 1 / 2) return q;
+                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                    return p;
+                };
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1 / 3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1 / 3);
+            }
+            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+        }
+
+
+        // --- TOOL 6: Online StopWatch & Countdown Timer ---
+        let stopwatchInterval = null;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let lapCount = 0;
+
+        function formatTime(ms) {
+            const date = new Date(ms);
+            const hours = String(date.getUTCHours()).padStart(2, '0');
+            const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        function updateStopwatch() {
+            const now = Date.now();
+            elapsedTime = now - startTime;
+            document.getElementById('stopwatch-display').textContent = formatTime(elapsedTime);
+        }
+
+        function startStopwatch() {
+            if (!stopwatchInterval) {
+                startTime = Date.now() - elapsedTime;
+                stopwatchInterval = setInterval(updateStopwatch, 1000);
+                document.getElementById('sw-start-btn').disabled = true;
+                document.getElementById('sw-stop-btn').disabled = false;
+            }
+        }
+
+        function stopStopwatch() {
+            clearInterval(stopwatchInterval);
+            stopwatchInterval = null;
+            document.getElementById('sw-start-btn').disabled = false;
+            document.getElementById('sw-stop-btn').disabled = true;
+        }
+
+        function resetStopwatch() {
+            stopStopwatch();
+            elapsedTime = 0;
+            lapCount = 0;
+            document.getElementById('stopwatch-display').textContent = '00:00:00';
+            document.getElementById('sw-laps').innerHTML = '';
+            document.getElementById('sw-start-btn').disabled = false;
+        }
+
+        function lapStopwatch() {
+            if (stopwatchInterval) {
+                lapCount++;
+                const lapTime = formatTime(elapsedTime);
+                const li = document.createElement('li');
+                li.className = 'py-1 border-b border-gray-600 last:border-b-0';
+                li.textContent = `Lap ${lapCount}: ${lapTime}`;
+                document.getElementById('sw-laps').prepend(li);
+            }
+        }
+
+        // Countdown Timer Logic
+        let timerInterval = null;
+        let totalTimeSeconds = 0;
+        let remainingTimeSeconds = 0;
+
+        function updateTimerDisplay() {
+            if (remainingTimeSeconds < 0) remainingTimeSeconds = 0;
+            const hours = Math.floor(remainingTimeSeconds / 3600);
+            const minutes = Math.floor((remainingTimeSeconds % 3600) / 60);
+            const seconds = remainingTimeSeconds % 60;
+
+            const display = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            document.getElementById('timer-display').textContent = display;
+        }
+
+        function startTimer() {
+            const mins = parseInt(document.getElementById('timer-minutes').value) || 0;
+            const secs = parseInt(document.getElementById('timer-seconds').value) || 0;
+
+            if (!timerInterval) {
+                if (remainingTimeSeconds === 0) {
+                    totalTimeSeconds = (mins * 60) + secs;
+                    remainingTimeSeconds = totalTimeSeconds;
+                }
+
+                if (remainingTimeSeconds <= 0) {
+                    // Custom message box instead of alert()
+                    document.getElementById('timer-display').textContent = '00:00:00';
+                    const statusEl = document.getElementById('image-status');
+                    statusEl.textContent = 'Please set a time greater than zero.'; 
+                    statusEl.classList.add('text-red-400');
+                    setTimeout(() => { statusEl.textContent = ''; statusEl.classList.remove('text-red-400') }, 3000);
+                    return;
+                }
+
+                timerInterval = setInterval(() => {
+                    remainingTimeSeconds--;
+                    updateTimerDisplay();
+
+                    if (remainingTimeSeconds <= 0) {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                        document.getElementById('timer-display').textContent = 'TIME UP!';
+                        // Simple visual alert instead of window.alert()
+                        document.getElementById('timer-display').classList.add('text-red-400', 'animate-pulse');
+                        document.getElementById('timer-start-btn').disabled = false;
+                        document.getElementById('timer-pause-btn').disabled = true;
+                        
+                        // Play a simple sound (Tone.js is not included, so using a simple audio element)
+                        const audio = new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-01.mp3'); 
+                        audio.play().catch(e => console.log("Sound failed to play.", e));
+                    }
+                }, 1000);
+                document.getElementById('timer-start-btn').disabled = true;
+                document.getElementById('timer-pause-btn').disabled = false;
+                document.getElementById('timer-display').classList.remove('text-red-400', 'animate-pulse');
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            document.getElementById('timer-start-btn').disabled = false;
+            document.getElementById('timer-pause-btn').disabled = true;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            remainingTimeSeconds = 0;
+            document.getElementById('timer-minutes').value = '25';
+            document.getElementById('timer-seconds').value = '00';
+            updateTimerDisplay();
+            document.getElementById('timer-display').classList.remove('text-red-400', 'animate-pulse');
+        }
+
+        // --- TOOL 7: Case Converter / Text Transformer ---
+        
+        function toTitleCase(str) {
+            return str.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
+
+        function toSentenceCase(str) {
+            str = str.toLowerCase();
+            // Find the first letter and capitalize it
+            str = str.charAt(0).toUpperCase() + str.slice(1);
+            // Capitalize letters after punctuation marks
+            return str.replace(/([.?!]\s+)([a-z])/g, (match, sep, char) => sep + char.toUpperCase());
+        }
+
+        function toCamelCase(str) {
+            // Remove special characters, then capitalize the first letter of each word except the first one
+            return str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (match, char) => char.toUpperCase());
+        }
+
+        function convertCase() {
+            const text = document.getElementById('case-input').value;
+
+            // Stats
+            const charCount = text.length;
+            const wordCount = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+            const lineCount = text.split('\n').length;
+            document.getElementById('case-stats').textContent = `Chars: ${charCount} | Words: ${wordCount} | Lines: ${lineCount}`;
+
+
+            const results = [
+                { name: 'lowercase', value: text.toLowerCase() },
+                { name: 'UPPERCASE', value: text.toUpperCase() },
+                { name: 'Title Case', value: toTitleCase(text) },
+                { name: 'Sentence case', value: toSentenceCase(text) },
+                { name: 'camelCase', value: toCamelCase(text) },
+                { name: 'kebab-case', value: text.toLowerCase().replace(/\s/g, '-') },
+                { name: 'snake_case', value: text.toLowerCase().replace(/\s/g, '_') },
+            ];
+
+            const container = document.getElementById('case-results');
+            container.innerHTML = results.map(res => `
+                <div class="flex justify-between items-center bg-gray-800 p-4 rounded-xl shadow-inner border border-gray-700">
+                    <div class="flex flex-col w-full pr-4">
+                        <span class="text-xs font-semibold text-gray-500">${res.name}</span>
+                        <textarea id="case-output-${res.name.replace(/[^a-z0-9]/gi, '')}" readonly class="font-mono text-base text-white bg-transparent resize-none h-10 overflow-hidden border-none focus:ring-0 w-full">${res.value}</textarea>
+                    </div>
+                    <button onclick="copyToClipboard('case-output-${res.name.replace(/[^a-z0-9]/gi, '')}', this)" class="px-3 py-1 bg-accent-primary text-white text-sm font-medium rounded-lg hover:bg-accent-dark transition flex-shrink-0">Copy</button>
+                </div>
+            `).join('');
+        }
+
+        // --- TOOL 8: Pixel-to-EM/REM/PT Converter ---
+        
+        function convertUnits() {
+            const pxInput = parseFloat(document.getElementById('px-input').value) || 0;
+            const baseFont = parseFloat(document.getElementById('base-font').value) || 16;
+
+            const rem = pxInput / baseFont;
+            const em = pxInput / baseFont;
+            const pt = pxInput * (72 / 96); 
+
+            document.getElementById('output-rem').textContent = `${rem.toFixed(4)} rem`;
+            document.getElementById('output-em').textContent = `${em.toFixed(4)} em`;
+            document.getElementById('output-pt').textContent = `${pt.toFixed(4)} pt`;
+        }
+        
+        // --- TOOL 9: Random Password/String Generator ---
+
+        const CHARS = {
+            uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            lowercase: 'abcdefghijklmnopqrstuvwxyz',
+            numbers: '0123456789',
+            symbols: '!@#$%^&*()_+-=[]{}|;:",.<>/?',
+        };
+
+        function generatePassword() {
+            const length = parseInt(document.getElementById('password-length').value);
+            const includeUpper = document.getElementById('check-uppercase').checked;
+            const includeLower = document.getElementById('check-lowercase').checked;
+            const includeNumbers = document.getElementById('check-numbers').checked;
+            const includeSymbols = document.getElementById('check-symbols').checked;
+
+            let charSet = '';
+            let requiredChars = [];
+
+            if (includeUpper) { charSet += CHARS.uppercase; requiredChars.push(CHARS.uppercase); }
+            if (includeLower) { charSet += CHARS.lowercase; requiredChars.push(CHARS.lowercase); }
+            if (includeNumbers) { charSet += CHARS.numbers; requiredChars.push(CHARS.numbers); }
+            if (includeSymbols) { charSet += CHARS.symbols; requiredChars.push(CHARS.symbols); }
+
+            if (charSet.length === 0) {
+                document.getElementById('password-output').value = 'Select character type.';
+                document.getElementById('password-strength').textContent = '';
+                return;
+            }
+
+            let password = '';
+            // Use Math.random for simplicity since Web Crypto API is heavy for repeated calls
+            const randomBytes = new Uint32Array(length);
+            crypto.getRandomValues(randomBytes);
+
+
+            for (let i = 0; i < length; i++) {
+                const randomValue = randomBytes[i];
+
+                if (i < requiredChars.length) {
+                    // Ensure at least one char from each selected category
+                    const pool = requiredChars[i];
+                    password += pool[randomValue % pool.length];
+                } else {
+                    // Fill the rest with general random chars from the combined set
+                    password += charSet[randomValue % charSet.length];
+                }
+            }
+
+            // Shuffle the password array to randomize the position of the required characters
+            const passwordChars = password.split('');
+            for (let i = passwordChars.length - 1; i > 0; i--) {
+                // Generate a new random index for shuffling
+                const j = Math.floor(Math.random() * (i + 1)); 
+                [passwordChars[i], passwordChars[j]] = [passwordChars[j], passwordChars[i]];
+            }
+            password = passwordChars.join('');
+            
+            updatePasswordStrength(password, includeUpper, includeLower, includeNumbers, includeSymbols);
+            document.getElementById('password-output').value = password;
+        }
+        
+        function updatePasswordStrength(password, up, low, num, sym) {
+            const strengthDisplay = document.getElementById('password-strength');
+            const poolSize = (up?26:0) + (low?26:0) + (num?10:0) + (sym?32:0);
+            
+            // Calculate entropy (in bits)
+            let entropy = password.length * Math.log2(poolSize);
+            entropy = Math.floor(entropy);
+
+            let color = 'text-red-500';
+            let message = 'Weak';
+
+            if (entropy >= 128) {
+                color = 'text-green-400';
+                message = `Excellent (Entropy: ${entropy} bits)`;
+            } else if (entropy >= 80) {
+                color = 'text-yellow-400';
+                message = `Strong (Entropy: ${entropy} bits)`;
+            } else if (entropy >= 60) {
+                color = 'text-orange-400';
+                message = `Good (Entropy: ${entropy} bits)`;
+            } else {
+                 message = `Weak (Entropy: ${entropy} bits)`;
+            }
+
+            strengthDisplay.className = `text-center font-bold text-sm mb-6 ${color}`;
+            strengthDisplay.textContent = message;
+        }
+
+
+        // --- Initialization ---
+
+        // Set the initial state when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showTool('markdown'); // Default to the first tool
+            // Run initial conversions/setup for specific tools
+            convertColor();
+            convertUnits();
+            generatePassword();
+            timestampToDate(true); 
+        });
+    </script>
+
+</body>
+</html>
